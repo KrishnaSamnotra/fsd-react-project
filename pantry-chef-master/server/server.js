@@ -17,7 +17,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "fsd-react-demo-krishna.vercel.app",
+      "https://fsd-react-demo-krishna.vercel.app",
     ],
   })
 );
