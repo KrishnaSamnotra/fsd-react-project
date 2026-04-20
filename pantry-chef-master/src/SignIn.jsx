@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5002";
+
 const SignIn = () => {
   const navigate = useNavigate();
 
@@ -26,7 +28,7 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5002/api/auth/signin", {
+      const response = await fetch(`${API_URL}/api/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,11 +45,11 @@ const SignIn = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-     alert("Signin successful!");
-navigate("/");
-window.location.reload();
+      alert("Signin successful!");
+      navigate("/");
+      window.location.reload();
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Failed to fetch");
     } finally {
       setLoading(false);
     }
