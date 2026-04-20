@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5002";
+const API_URL =
+  process.env.REACT_APP_API_URL || "https://pantry-chef-api.onrender.com";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -52,54 +53,59 @@ const SignIn = () => {
       setError(err.message || "Failed to fetch");
     } finally {
       setLoading(false);
+
+
+
+      
     }
   };
 
   return (
-    <section className="auth-page">
-      <div className="auth-card">
-        <h1 className="auth-title">Sign in</h1>
-        <p className="auth-subtitle">Welcome back to Pantry Chef Master</p>
+  <section className="auth-page">
+    <div className="auth-card">
+      <h1 className="auth-title">Sign in</h1>
+      <p className="auth-subtitle">Welcome back to Pantry Chef Master</p>
 
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <label className="auth-label">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="auth-input"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <label className="auth-label">Email</label>
+        <input
+          type="email"
+          name="email"
+          className="auth-input"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
 
-          <label className="auth-label">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="auth-input"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+        <label className="auth-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          className="auth-input"
+          placeholder="Enter your password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
 
-          {error && <p style={{ color: "red", marginTop: "8px" }}>{error}</p>}
+        {error && <p style={{ color: "red", marginTop: "8px" }}>{error}</p>}
 
-          <button type="submit" className="auth-primary-btn" disabled={loading}>
-            {loading ? "Signing in..." : "Sign in"}
-          </button>
-        </form>
+        <button type="submit" className="auth-primary-btn" disabled={loading}>
+          {loading ? "Signing in..." : "Sign in"}
+        </button>
+      </form>
 
-        <p className="auth-switch-text">
-          Don’t have an account?{" "}
-          <Link to="/signup" className="auth-link">
-            Sign up
-          </Link>
-        </p>
-      </div>
-    </section>
-  );
+      <p className="auth-switch-text">
+        Don’t have an account?{" "}
+        <Link to="/signup" className="auth-link">
+          Sign up
+        </Link>
+      </p>
+    </div>
+  </section>
+);
+
 };
 
 export default SignIn;
