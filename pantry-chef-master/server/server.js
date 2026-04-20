@@ -18,6 +18,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://fsd-react-demo-krishna.vercel.app",
+      "https://fsd-react-demo-krishna-git-main-krishnasamnotras-projects.vercel.app",
     ],
   })
 );
@@ -56,7 +57,7 @@ app.post("/api/auth/signup", async (req, res) => {
     await user.save();
 
     if (!process.env.JWT_SECRET) {
-      return res
+      returnres
         .status(500)
         .json({ message: "JWT_SECRET is not set on the server" });
     }
